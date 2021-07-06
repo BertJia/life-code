@@ -1,0 +1,417 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>生命密码</title>
+<script type="text/javascript" src="yournumber/util/jquery-1.11.2.min.js"></script>
+<script type="text/javascript" src="yournumber/util/lunar.js"></script>
+<style>
+td {
+    text-align:center;
+}
+.table_title {
+    font-size:20px;
+    font-family: fantasy;
+    text-align: left;
+}
+.short_input {
+    width: 50px;
+    text-align: center;
+    height: 50px;
+    font-size: xx-large;
+    font-family: serif;
+    border: 0px;
+    border-bottom: 1px solid #CCC;
+}
+.main_num{
+    color:red;
+}
+.user_input{
+    border:1px solid #CCC;
+    width: 100px;
+    height: 90px;
+    font-size: 50px;
+}
+.no_under_input{
+    border:0px;
+}
+table{
+    width: 100%;
+    padding-left: 10%;
+    padding-right: 10%;
+}
+.span_style{
+    display: block;
+}
+#btn_span{
+    position: absolute;
+    margin-left: 15px;
+    margin-top: 20px;    
+}
+#turn_to_solar{
+    width:55px;
+    height:55px;
+}
+.table_ana {
+    text-align: left;
+    border-collapse: collapse;
+}
+.table_ana td{
+    text-align: left;
+	border:1px solid #000000;
+}
+.table_ana .th_style{
+	font-weight: 800;
+}
+.table_ana .main{
+	color: red;
+    font-weight: 700;
+}
+</style>
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "https://hm.baidu.com/hm.js?1755dc5311caa599a813eb67604550f4";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+</head>
+<body>
+    <table>
+        <th>
+            <td colspan="9" class="table_title">生命密码计算:</td>
+        </th>
+        <tr>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="R" name="R" title="Q+P" value="3" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+        </tr>
+        <tr>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="Q" name="Q" title="N+O" value="1" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="P" name="P" title="M+O" value="2" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+        </tr>
+        <tr>
+            <td><input class="short_input" type="text" id="S" name="S" title="X+W" value="3" /></td>
+            <td><input class="short_input" type="text" id="X" name="X" title="I+M" value="8" /></td>
+            <td><input class="short_input" type="text" id="W" name="W" title="J+M" value="4" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input main_num" type="text" id="O" name="O" title="M+N" value="4" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="V" name="V" title="K+N" value="7" /></td>
+            <td><input class="short_input" type="text" id="U" name="U" title="L+N" value="2" /></td>
+            <td><input class="short_input" type="text" id="T" name="T" title="V+U" value="9" /></td>
+        </tr>
+        <tr>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="M" name="M" title="I+J" value="7" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="N" name="N" title="K+L" value="6" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+        </tr>
+        <tr>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="I" name="I" title="A+B" value="1" /></td>
+            <td><input class="short_input" type="text" id="J" name="J" title="C+D" value="6" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="K" name="K" title="E+F" value="1" /></td>
+            <td><input class="short_input" type="text" id="L" name="L" title="G+H" value="5" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+            <td><input class="short_input" type="text" id="" name="" /></td>
+        </tr>
+        <tr>
+            <td colspan='2'><input class="short_input user_input" type="text" id="AB" name="AB" title="日期" value="01" /><span class="span_style">(日期)</span></td>
+            <td colspan='2'><input class="short_input user_input" type="text" id="CD" name="CD" title="月份" value="06" /><span class="span_style">(月份)</span></td>
+            <td><input class="short_input no_under_input" type="text" id="" name="" /></td>
+            <td colspan='2' ><input class="short_input user_input" type="text" id="EF" name="EF" title="年份前两位" value="19" /><span class="span_style">(年份前两位)</span></td>
+            <td colspan='2' ><input class="short_input user_input" type="text" id="GH" name="GH" title="年份后两位" value="86" /><span id="btn_span"><input type="button" name="turn_to_solar" id="turn_to_solar" value="转阳历" /></span><span class="span_style">(年份后两位)</span></td>
+        </tr>
+    </table>
+	</br>
+	</br>
+	<table class="table_ana">
+		<tr class="th_style">
+			<td>主性格</td><td>性格正面</td><td>性格反面</td>
+		</tr>
+		<tr id="tr_1">
+			<td>1号人</td><td>	领导力、创造、自信、果断、专注、独立	</td><td>自我、孤独、高傲自大、强势、自我中心</td>
+		</tr>
+		<tr id="tr_2">
+			<td>2号人</td><td>	温和、有耐心、善解人意、善于合作、读心术、分析能力强</td><td>	依赖、比较、易受影响、犹豫不决、优柔寡断</td>
+		</tr>
+		<tr id="tr_3">
+			<td>3号人</td><td>	积极、执行力强、激情、激励、行动、表达、威信</td><td>	冲动、没耐心、坏脾气、不专情、任性</td>
+		</tr>
+		<tr id="tr_4">
+			<td>4号人</td><td>	学习力强、组织能力强、有条理、踏实稳重、善于策划、聪明、务实</td><td>	心直口快、缺乏安全感、单刀直入、犹疑不定、悲观、保守</td>
+		</tr>
+		<tr id="tr_5">
+			<td>5号人</td><td>	目标感强、方向感强、坚持、幽默感、自由自在、豪爽	</td><td>固执、猜疑、冲动、面子、随心所欲</td>
+		</tr>
+		<tr id="tr_6">
+			<td>6号人</td><td>	忠诚、远见、财富、洞察力、完美、发现问题、领悟力、无私奉献</td><td>	浪费、挑剔、自负、易陷入细节</td>
+		</tr>
+		<tr id="tr_7">
+			<td>7号人</td><td>	人缘好、博学、遇贵人、好奇心、好研究、乐于助人</td><td>	不体贴、迟缓、冷淡、多疑</td>
+		</tr>
+		<tr id="tr_8">
+			<td>8号人</td><td>	责任、权威、格局、抗压力、理想抱负、权力、亲善</td><td>	压力、消极、野心、纠结、压力</td>
+		</tr>
+		<tr id="tr_9">
+			<td>9号人</td><td>	机会、正值、智慧、爱冒险、洞察力、察言观色、使命感	</td><td>寂寞、无原则、贪心、不专精、脱离现实</td>
+		</tr>
+	</table>
+	</br>
+	<script type="text/javascript">
+/**
+ * @copyright (c) 2017, iloveyezi.cn All rights reserved.
+ *
+ * @file  y_n.html
+ * @brief 根据用户输入计算生命密码 
+ *        参考: <<数字心理学>> 作者:钟缮夤
+ *        感谢: 魏福生
+ * @author Bert
+ * @date 2017-5-6
+ */
+
+//计算两数相加的结果
+//0+0=5;
+function num1to9(first, second){
+    var ret = 0;
+    if(first == 0 && second == 0){
+        ret = 5;
+    }
+    else{
+        ret = first+second;
+    }
+    if(ret > 9){
+        ret = ret-9;
+    }
+    return ret;
+}
+function calc_num(a, b, c, d, e, f, g, h){
+    var i = num1to9(a,b);
+    var j = num1to9(c,d);
+    var k = num1to9(e,f);
+    var l = num1to9(g,h);
+
+    var m = num1to9(i,j);
+    var n = num1to9(k,l);
+
+    var o = num1to9(m,n);
+
+    var w = num1to9(j,m);
+    var x = num1to9(i,m);
+    var s = num1to9(x,w);
+
+    var v = num1to9(k,n);
+    var u = num1to9(l,n);
+    var t = num1to9(v,u);
+
+    var q = num1to9(n,o);
+    var p = num1to9(m,o);
+    var r = num1to9(q,p);
+
+    $("#I").val(i);
+    $("#J").val(j);
+    $("#K").val(k);
+    $("#L").val(l);
+    $("#M").val(m);
+    $("#N").val(n);
+    $("#O").val(o);
+    $("#P").val(p);
+    $("#Q").val(q);
+    $("#R").val(r);
+    $("#S").val(s);
+    $("#T").val(t);
+    $("#U").val(u);
+    $("#V").val(v);
+    $("#W").val(w);
+    $("#X").val(x);
+
+    setMainHl(o);
+}
+function get_one_num(val){
+    var ret_obj = {};
+    if(val.length == 2){
+        ret_obj.first = parseInt(val.toString().substr(0, 1), 10);
+        ret_obj.second = parseInt(val.toString().substr(1, 1), 10)
+    }
+    else{
+        ret_obj.first = 0;
+        ret_obj.second = parseInt(val, 10);
+    }
+    return ret_obj;
+}
+function get_num(){
+    var ret_obj = {a:0,b:1,c:0,d:6,e:1,f:9,g:8,h:6};
+    var ab_str = $("#AB").val();
+    var ab_val = ab_str ? ab_str : 0;
+    var ab_obj = get_one_num(ab_val);
+    ret_obj.a = ab_obj.first;
+    ret_obj.b = ab_obj.second;
+
+    var cd_str = $("#CD").val();
+    var cd_val = cd_str ? cd_str : 0;
+    var cd_obj = get_one_num(cd_val);
+    ret_obj.c = cd_obj.first;
+    ret_obj.d = cd_obj.second;
+
+    var ef_str = $("#EF").val();
+    var ef_val = ef_str ? ef_str : 0;
+    var ef_obj = get_one_num(ef_val);
+    ret_obj.e = ef_obj.first;
+    ret_obj.f = ef_obj.second;
+
+    var gh_str = $("#GH").val();
+    var gh_val = gh_str ? gh_str : 0;
+    var gh_obj = get_one_num(gh_val);
+    ret_obj.g = gh_obj.first;
+    ret_obj.h = gh_obj.second;
+    return ret_obj;
+}
+function init_birthday(birth){
+    $("#AB").val(birth.day);
+    $("#CD").val(birth.month);
+    $("#EF").val(birth.year.toString().substr(0, birth.year.toString().length-2));
+    $("#GH").val(birth.year.toString().substr(-2));
+    var ret_num = get_num();
+    calc_num(ret_num.a, ret_num.b, ret_num.c, ret_num.d, ret_num.e, ret_num.f, ret_num.g, ret_num.h);
+}
+//验证输入是否正确, 返回错误类型
+//校验正确的年,月,日 TODO
+function correct_input_num(num){
+    var ret = 0; //正确的
+    //长度最多为2位
+    if(num.length > 2){
+        ret = 1; //长度错误
+    }
+    //是数字
+    if(isNaN(num)){
+        ret = 2; //不是数字
+    }
+    return ret;
+}
+//根据错误类型返回正确的数字
+function error_num_handling(num, error_type){
+    var correct_ret = num;
+    if(error_type === 1){
+        correct_ret = num.toString().substr(0, 2);
+    }
+    else if(error_type === 2){
+        correct_ret = parseInt(num, 10);
+    }
+    return correct_ret; 
+}
+//规范输入
+function normalize_num(num){
+    var ret_num;
+    var check_ret = correct_input_num(num);
+    if(check_ret === 0){
+        ret_num = num;
+    }
+    else{
+        ret_num = error_num_handling(num, check_ret);
+    }
+    return ret_num;
+}
+//为性格解析表格的主性格人添加高亮
+
+function setMainHl(main_num){
+	$(".table_ana").children("tbody").children("tr[id^='tr_']").removeClass("main");
+	$(".table_ana").children("tbody").children("tr").eq(parseInt(main_num, 10)).addClass("main");
+}
+$(function(){
+    //非输入框设置只读
+    $(".short_input").attr("readonly", true);
+    $(".user_input").removeAttr("readonly");
+    //输入框绑定事件
+    //日期
+    $("#AB").bind("keyup", function(){
+        var ab_str = $("#AB").val();
+        $("#AB").val(normalize_num(ab_str));
+        var ret_num = get_num();
+        calc_num(ret_num.a, ret_num.b, ret_num.c, ret_num.d, ret_num.e, ret_num.f, ret_num.g, ret_num.h);
+    });
+    //月份
+    $("#CD").bind("keyup", function(){
+        var cd_str = $("#CD").val();
+        $("#CD").val(normalize_num(cd_str));
+        var ret_num = get_num();
+        calc_num(ret_num.a, ret_num.b, ret_num.c, ret_num.d, ret_num.e, ret_num.f, ret_num.g, ret_num.h);
+    });
+    //年份前两位
+    $("#EF").bind("keyup", function(){
+        var ef_str = $("#EF").val();
+        $("#EF").val(normalize_num(ef_str));
+        var ret_num = get_num();
+        calc_num(ret_num.a, ret_num.b, ret_num.c, ret_num.d, ret_num.e, ret_num.f, ret_num.g, ret_num.h);
+    });
+    //年份后两位
+    $("#GH").bind("keyup", function(){
+        var gh_str = $("#GH").val();
+        $("#GH").val(normalize_num(gh_str));
+
+        var ret_num = get_num();
+        calc_num(ret_num.a, ret_num.b, ret_num.c, ret_num.d, ret_num.e, ret_num.f, ret_num.g, ret_num.h);
+    });
+    //转为阳历
+    $("#turn_to_solar").bind("click", function(){
+        var day = $("#AB").val();
+        var month = $("#CD").val();
+        var year = $("#EF").val() + $("#GH").val();
+        var solar_arr = Lunar.toSolar(year, month, day);
+        if(solar_arr && solar_arr[0]){
+            //从新赋值
+            $("#AB").val(solar_arr[2]);
+            $("#CD").val(solar_arr[1]);
+            var solar_year = solar_arr[0].toString();
+            $("#EF").val(solar_year.substr(0, solar_year.length-2));
+            $("#GH").val(solar_year.substr(-2));
+            var ret_num = get_num();
+            calc_num(ret_num.a, ret_num.b, ret_num.c, ret_num.d, ret_num.e, ret_num.f, ret_num.g, ret_num.h);
+        }
+        else{
+            alert('转换错误,请您先输入阳历生日!');
+        }
+    });
+
+    //初始值
+    //me  01 06 19 88
+    // var birth = {day:"01", month:"06", year: "1986"};
+    //亲: 11 04 19 88;
+    //var birth = {day:"11", month:"04", year: "1988"};
+    //董: 28 07 19 77;
+    // var birth = {day:"28", month:"07", year: "1977"};
+    //Steve Jobs
+    //var birth = {year: "1955", month:"02", day:"24" };
+    //Today
+    var dateObj = new Date();
+    var year = dateObj.getFullYear();
+    var month = dateObj.getMonth() + 1;
+    var day = dateObj.getDate();
+    var birth = {year: year, month:month, day:day};
+    init_birthday(birth);
+    $("#AB").focus();
+});
+</script>
+</body>
+</html>
