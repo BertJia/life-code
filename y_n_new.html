@@ -51,6 +51,21 @@ table{
     width:55px;
     height:55px;
 }
+.table_ana {
+    text-align: left;
+    border-collapse: collapse;
+}
+.table_ana td{
+    text-align: left;
+	border:1px solid #000000;
+}
+.table_ana .th_style{
+	font-weight: 800;
+}
+.table_ana .main{
+	color: red;
+    font-weight: 700;
+}
 </style>
 <script>
 var _hmt = _hmt || [];
@@ -137,6 +152,41 @@ var _hmt = _hmt || [];
 				<span class="span_style">(年份后两位)</span></td>
         </tr>
     </table>
+	</br>
+	</br>
+	<table class="table_ana">
+		<tr class="th_style">
+			<td>主性格</td><td>性格正面</td><td>性格反面</td>
+		</tr>
+		<tr id="tr_1">
+			<td>1号人</td><td>	领导力、创造、自信、果断、专注、独立	</td><td>自我、孤独、高傲自大、强势、自我中心</td>
+		</tr>
+		<tr id="tr_2">
+			<td>2号人</td><td>	温和、有耐心、善解人意、善于合作、读心术、分析能力强</td><td>	依赖、比较、易受影响、犹豫不决、优柔寡断</td>
+		</tr>
+		<tr id="tr_3">
+			<td>3号人</td><td>	积极、执行力强、激情、激励、行动、表达、威信</td><td>	冲动、没耐心、坏脾气、不专情、任性</td>
+		</tr>
+		<tr id="tr_4">
+			<td>4号人</td><td>	学习力强、组织能力强、有条理、踏实稳重、善于策划、聪明、务实</td><td>	心直口快、缺乏安全感、单刀直入、犹疑不定、悲观、保守</td>
+		</tr>
+		<tr id="tr_5">
+			<td>5号人</td><td>	目标感强、方向感强、坚持、幽默感、自由自在、豪爽	</td><td>固执、猜疑、冲动、面子、随心所欲</td>
+		</tr>
+		<tr id="tr_6">
+			<td>6号人</td><td>	忠诚、远见、财富、洞察力、完美、发现问题、领悟力、无私奉献</td><td>	浪费、挑剔、自负、易陷入细节</td>
+		</tr>
+		<tr id="tr_7">
+			<td>7号人</td><td>	人缘好、博学、遇贵人、好奇心、好研究、乐于助人</td><td>	不体贴、迟缓、冷淡、多疑</td>
+		</tr>
+		<tr id="tr_8">
+			<td>8号人</td><td>	责任、权威、格局、抗压力、理想抱负、权力、亲善</td><td>	压力、消极、野心、纠结、压力</td>
+		</tr>
+		<tr id="tr_9">
+			<td>9号人</td><td>	机会、正值、智慧、爱冒险、洞察力、察言观色、使命感	</td><td>寂寞、无原则、贪心、不专精、脱离现实</td>
+		</tr>
+	</table>
+	</br>
 <script type="text/javascript">
 /**
  * @copyright (c) 2017, iloveyezi.cn All rights reserved.
@@ -203,6 +253,8 @@ function calc_num(a, b, c, d, e, f, g, h){
     $("#V").val(v);
     $("#W").val(w);
     $("#X").val(x);
+
+    setMainHl(o);
 }
 function get_one_num(val){
     var ret_obj = {};
@@ -288,7 +340,12 @@ function normalize_num(num){
     }
     return ret_num;
 }
+//为性格解析表格的主性格人添加高亮
 
+function setMainHl(main_num){
+	$(".table_ana").children("tbody").children("tr[id^='tr_']").removeClass("main");
+	$(".table_ana").children("tbody").children("tr").eq(parseInt(main_num, 10)).addClass("main");
+}
 $(function(){
     //非输入框设置只读
     $(".short_input").attr("readonly", true);
