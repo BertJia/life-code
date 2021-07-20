@@ -80,12 +80,14 @@ var _hmt = _hmt || [];
 <body>
 	<div id="number_table">
     <table>
-        <th>
-            <td colspan="9" class="table_title">生命密码计算:</td>
-        </th>
+        <tr>
+            <th colspan="9" class="table_title">生命密码计算:</th>
+        </tr>
 		<tr>
 			<td colspan="9">请输入生日：<input type="text" id="birthday" name="birthday" ref="birthday" v-on:keyup="setInitBirth($event)" v-model="initBirth"/>
+	<!-- 此处的功能和turnToSolar相同，去掉这个。
 				<input type="button" id="change_to_solar" name="change_to_solar" value="转阳历" v-on:click="changeToSolar($event)" />
+	-->
 			</td>
 		</tr>
         <tr>
@@ -150,43 +152,29 @@ var _hmt = _hmt || [];
             <td colspan='2' ><input class="short_input user_input" type="text" id="EF" name="EF" title="年份前两位" @keyup="EFKeyup($event)" v-model="birthday.year_b_2"  /><span class="span_style">(年份前两位)</span></td>
             <td colspan='2' >
 				<input class="short_input user_input" type="text" id="GH" name="GH" title="年份后两位" @keyup="GHKeyup($event)" v-model="birthday.year_a_2"  />
-				<span id="btn_span"><input type="button" name="turn_to_solar" id="turn_to_solar" value="转阳历" /></span>
+				<span id="btn_span"><input type="button" name="turn_to_solar" id="turn_to_solar" value="转阳历" v-on:click="turnToSolar($event)" /></span>
 				<span class="span_style">(年份后两位)</span></td>
         </tr>
     </table>
 	</br>
 	</br>
 	<table class="table_ana">
-		<tr class="th_style">
-			<td>主性格</td><td>性格正面</td><td>性格反面</td>
-		</tr>
-		<tr id="tr_1" :class="{main:trClass.isActivetr1}">
-			<td>1号人</td><td>	领导力、创造、自信、果断、专注、独立	</td><td>自我、孤独、高傲自大、强势、自我中心</td>
-		</tr>
-		<tr id="tr_2" :class="{main:trClass.isActivetr2}">
-			<td>2号人</td><td>	温和、有耐心、善解人意、善于合作、读心术、分析能力强</td><td>	依赖、比较、易受影响、犹豫不决、优柔寡断</td>
-		</tr>
-		<tr id="tr_3" :class="{main:trClass.isActivetr3}">
-			<td>3号人</td><td>	积极、执行力强、激情、激励、行动、表达、威信</td><td>	冲动、没耐心、坏脾气、不专情、任性</td>
-		</tr>
-		<tr id="tr_4" :class="{main:trClass.isActivetr4}">
-			<td>4号人</td><td>	学习力强、组织能力强、有条理、踏实稳重、善于策划、聪明、务实</td><td>	心直口快、缺乏安全感、单刀直入、犹疑不定、悲观、保守</td>
-		</tr>
-		<tr id="tr_5" :class="{main:trClass.isActivetr5}">
-			<td>5号人</td><td>	目标感强、方向感强、坚持、幽默感、自由自在、豪爽	</td><td>固执、猜疑、冲动、面子、随心所欲</td>
-		</tr>
-		<tr id="tr_6" :class="{main:trClass.isActivetr6}">
-			<td>6号人</td><td>	忠诚、远见、财富、洞察力、完美、发现问题、领悟力、无私奉献</td><td>	浪费、挑剔、自负、易陷入细节</td>
-		</tr>
-		<tr id="tr_7" :class="{main:trClass.isActivetr7}">
-			<td>7号人</td><td>	人缘好、博学、遇贵人、好奇心、好研究、乐于助人</td><td>	不体贴、迟缓、冷淡、多疑</td>
-		</tr>
-		<tr id="tr_8" :class="{main:trClass.isActivetr8}">
-			<td>8号人</td><td>	责任、权威、格局、抗压力、理想抱负、权力、亲善</td><td>	压力、消极、野心、纠结、压力</td>
-		</tr>
-		<tr id="tr_9" :class="{main:trClass.isActivetr9}">
-			<td>9号人</td><td>	机会、正值、智慧、爱冒险、洞察力、察言观色、使命感	</td><td>寂寞、无原则、贪心、不专精、脱离现实</td>
-		</tr>
+			<thead>
+				<tr class="th_style">
+					<th>主性格</th>
+					<th>性格正面</th>
+					<th>性格负面</th>
+				</tr>
+			</thead>
+			<tbody>
+<template v-for="person in characterArr" :key="person.id">
+				<tr :class="{main:trClass['isActivetr'+person.id]}">
+					<td>{{ person.cNO }}</td>
+					<td>{{ person.cPositive }}</td>
+					<td>{{ person.cNegative }}</td>
+				</tr>
+</template>
+			</tbody>
 	</table>
 	</br>
 	</div>
@@ -219,7 +207,7 @@ function num1to9(first, second){
 }
 function get_one_num(val){
     var ret_obj = {};
-    if(val.length == 2){
+    if(val.toString().length == 2){
         ret_obj.first = parseInt(val.toString().substr(0, 1), 10);
         ret_obj.second = parseInt(val.toString().substr(1, 1), 10)
     }
@@ -331,7 +319,55 @@ const lifeCodeApp = {
 				V:7,
 				W:4,
 				X:8
-			}
+			},
+			characterArr: [
+				{
+					id:1,
+					cNO:'1号人',
+					cPositive:'领导力、创造、自信、果断、专注、独立',
+					cNegative:'自我、孤独、高傲自大、强势、自我中心'
+				}, {
+					id:2,
+					cNO:'2号人',
+					cPositive:'温和、有耐心、善解人意、善于合作、读心术、分析能力强',
+					cNegative:'依赖、比较、易受影响、犹豫不决、优柔寡断'
+				}, {
+					id:3,
+					cNO:'3号人',
+					cPositive:'积极、执行力强、激情、激励、行动、表达、威信',
+					cNegative:'冲动、没耐心、坏脾气、不专情、任性'
+				}, {
+					id:4,
+					cNO:'4号人',
+					cPositive:'学习力强、组织能力强、有条理、踏实稳重、善于策划、聪明、务实',
+					cNegative:'心直口快、缺乏安全感、单刀直入、犹疑不定、悲观、保守'
+				}, {
+					id:5,
+					cNO:'5号人',
+					cPositive:'目标感强、方向感强、坚持、幽默感、自由自在、豪爽',
+					cNegative:'固执、猜疑、冲动、面子、随心所欲'
+				}, {
+					id:6,
+					cNO:'6号人',
+					cPositive:'忠诚、远见、财富、洞察力、完美、发现问题、领悟力、无私奉献',
+					cNegative:'浪费、挑剔、自负、易陷入细节'
+				}, {
+					id:7,
+					cNO:'7号人',
+					cPositive:'人缘好、博学、遇贵人、好奇心、好研究、乐于助人',
+					cNegative:'不体贴、迟缓、冷淡、多疑'
+				}, {
+					id:8,
+					cNO:'8号人',
+					cPositive:'责任、权威、格局、抗压力、理想抱负、权力、亲善',
+					cNegative:'压力、消极、野心、纠结'
+				}, {
+					id:9,
+					cNO:'9号人',
+					cPositive:'机会、正值、智慧、爱冒险、洞察力、察言观色、使命感',
+					cNegative:'寂寞、无原则、贪心、不专精、脱离现实'
+				}
+			]
 		}
 	},
 	methods:{
@@ -446,15 +482,8 @@ const lifeCodeApp = {
 				this.calc_num(ret_num.a, ret_num.b, ret_num.c, ret_num.d, ret_num.e, ret_num.f, ret_num.g, ret_num.h);
 			}
 		},
-		changeToSolar(event){
-			let clickDom = event.currentTarget; // currentTarget 获取绑定点击事件的节点
-			let previous = clickDom.previousElementSibling; // previousElementSibling获取绑定事件节点的前一个节点
-			//alert(previous.value);
-			//此处调用转阳历的方法，显示出阳历，用户输入的是农历，转为阳历
-			//alert(this.$refs.birthday.value)
-			let b_v = this.$refs.birthday.value;
-			let b_v_arr = b_v.split("-");
-			var solar_arr = Lunar.toSolar(b_v_arr[0], b_v_arr[1], b_v_arr[2]);
+		toSolr(year, month, day){
+			var solar_arr = Lunar.toSolar(year, month, day);
 			if(solar_arr && solar_arr[0]){
 				//从新赋值
 				this.birthday.day = solar_arr[2];
@@ -468,6 +497,22 @@ const lifeCodeApp = {
 			else{
 				alert('转换错误,请您先输入阳历生日!');
 			}
+		},
+		changeToSolar(event){
+			let clickDom = event.currentTarget; // currentTarget 获取绑定点击事件的节点
+			let previous = clickDom.previousElementSibling; // previousElementSibling获取绑定事件节点的前一个节点
+			//alert(previous.value);
+			//此处调用转阳历的方法，显示出阳历，用户输入的是农历，转为阳历
+			//alert(this.$refs.birthday.value)
+			let b_v = this.$refs.birthday.value;
+			let b_v_arr = b_v.split("-");
+			let year = b_v_arr[0];
+			let month = b_v_arr[1];
+			let day = b_v_arr[2]
+			this.toSolr(year, month, day);
+		},
+		turnToSolar(event){
+			this.toSolr(this.birthday.year_b_2.toString()+this.birthday.year_a_2, this.birthday.month, this.birthday.day);
 		},
 		ABKeyup(event){
 			var ret_num = get_num(this.birthday.day,this.birthday.month, this.birthday.year_b_2, this.birthday.year_a_2);
